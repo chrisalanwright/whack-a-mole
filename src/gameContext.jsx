@@ -39,4 +39,15 @@ export function GameProvider({ children }) {
     clearInterval(timer.current);
     setTime(TIME_LIMIT);
   };
+
+  const value = {
+    field,
+    score,
+    highScores,
+    playing,
+    time,
+    whack,
+    start,
+    stop,
+  };
 }
