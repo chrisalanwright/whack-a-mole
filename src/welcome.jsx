@@ -1,3 +1,5 @@
+import { useGame } from "./gameContext";
+
 export default function Welcome() {
   const { start, highScores } = useGame();
   return (
