@@ -1,4 +1,4 @@
-import { useGame } from "./gameContext";
+import { useGame } from "./gameContext.jsx";
 
 export default function Field() {
   const { field } = useGame();
