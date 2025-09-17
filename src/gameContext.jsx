@@ -3,13 +3,13 @@ import { createContext, useContext, useEffect, useRef, useState } from "react";
 let NUM_HOLES = 9;
 let TIME_LIMIT = 20;
 
-const gameContext = createContext();
+const GameContext = createContext();
 
 export function GameProvider({ children }) {
   const [field, setField] = useState(makeField());
   const [score, setScore] = useState(0);
   const [highScores, setHighScores] = useState([]);
-  const [playhing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const [time, setTime] = useState(TIME_LIMIT);
   const timer = useRef();
 
@@ -50,14 +50,15 @@ export function GameProvider({ children }) {
     start,
     stop,
   };
-  return <gameContext.Provider value={value}>{children}</gameContext.Provider>;
+  return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 }
 
 export function useGame() {
-  const context = cuseContext(GameContext);
-  if (!context) throw Error("Context must be withing GameProvider.");
+  const context = useContext(GameContext);
+  if (!context) throw Error("Context must be within GameProvider.");
   return context;
 }
+export { GameContext };
 
 function makeField(field = []) {
   const newField = Array(NUM_HOLES).fill(false);
