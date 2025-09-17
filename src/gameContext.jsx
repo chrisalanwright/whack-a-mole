@@ -50,4 +50,22 @@ export function GameProvider({ children }) {
     start,
     stop,
   };
+  return <gameContext.Provider value={value}>{children}</gameContext.Provider>;
+}
+
+export function useGame() {
+  const context = cuseContext(GameContext);
+  if (!context) throw Error("Context must be withing GameProvider.");
+  return context;
+}
+
+function makeField(field = []) {
+  const newField = Array(NUM_HOLES).fill(false);
+  let mole = Math.floor(Math.random() * NUM_HOLES);
+  while (field[mole]) {
+    mole = Math.floor(Math.random() * NUM_HOLES);
+  }
+
+  newField[mole] = true;
+  return newField;
 }
